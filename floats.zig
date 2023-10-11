@@ -7,6 +7,13 @@ test "float widening" {
     try expect(c == @as(f128, a));
 }
 
+test "int float conversion" {
+    const a: i32 = 0;
+    const b = @as(f32, @floatFromInt(a)) ;
+    const c = @as(i32, b);
+    try expect(c == a);
+}
+
 pub fn main() !void {
     const floating_point: f64 = 123.0E+77;
     const another_float: f64 = 123.0;
