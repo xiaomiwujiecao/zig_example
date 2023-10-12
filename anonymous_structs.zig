@@ -48,6 +48,7 @@ fn testSentinelTerminatedArray() void {
     const casted_value = @as(*const [5]u8, @ptrCast(&terminated));
     std.debug.print("{s}\n", .{terminated});
     std.debug.print("{s}\n", .{casted_value});
+    std.debug.print("{}\n", .{casted_value[4]});
 }
 
 pub fn main() void {
