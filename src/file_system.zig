@@ -1,7 +1,8 @@
 const std = @import("std");
 const eql = std.mem.eql;
+const FILE_NAME = "example.tx t";
 fn createFile() !void {
-    const file = try std.fs.cwd().createFile("example.txt", .{ .read = true });
+    const file = try std.fs.cwd ().createFile(FILE_NAME, .{ .read = true });
     defer file.close();
 
     const bytes_written = try file.write("Hello World!");
@@ -9,7 +10,7 @@ fn createFile() !void {
 }
 
 fn readFile() !void {
-    const file = try std.fs.cwd().openFile("example.txt", .{});
+    const file = try std.fs.cwd().openFile(FILE_NAME, .{});
     defer file.close();
     var buffer: [100]u8 = undefined;
     try file.seekTo(0);
@@ -20,7 +21,7 @@ fn readFile() !void {
 }
 
 fn readFileStats() !void {
-    const file = try std.fs.cwd().openFile("example.txt", .{});
+    const file = try std.fs.cwd().openFile(FILE_NAME, .{});
     defer file.close();
     const stat = try file.stat();
     std.debug.print("size = {d}\n", .{stat.size});
