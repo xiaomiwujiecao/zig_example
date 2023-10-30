@@ -19,6 +19,18 @@ fn randomNumber() !void {
     std.debug.print("{d}\n", .{d});
 }
 
+fn fetchPut() !void {
+    var map = std.StringHashMap(enum { cool, uncool }).init(std.heap.page_allocator);
+    defer map.deinit();
+    try map.put("loris", .uncool);
+    try map.put("me", .cool);
+    const me_value = map.get("me").?;
+    std.debug.print("{}\n", .{me_value});
+    const loris_value = map.get("loris").?;
+    std.debug.print("{}\n", .{loris_value});
+}
+
 pub fn main() !void {
-    try randomNumber();
+    // try randomNumber();
+    try fetchPut();
 }
